@@ -1,0 +1,2154 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Burger Hub | Big Burgers. Bold Cravings. | Karachi, Pakistan</title>
+  
+  <!-- SEO & Meta Tags -->
+  <meta name="description" content="Burger Hub in Karachi, Pakistan brings you a bold, burger-focused culinary experience featuring juicy layers, premium patties, and mouth-watering flavors." />
+  <meta property="og:title" content="Burger Hub - Big Burgers. Bold Cravings." />
+  <meta property="og:description" content="Discover Karachi's ultimate burger-focused destination. Premium beef, chicken, and cheesy burger creations." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1200&q=80" />
+
+  <!-- Inline SVG Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍔</text></svg>" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================
+       CSS VARIABLES & BASE RESETS
+       ========================================== */
+    :root {
+      --bg-dark: #0a0a0c;
+      --bg-card: #141418;
+      --bg-card-hover: #1c1c24;
+      --accent-orange: #ff5e00;
+      --accent-orange-hover: #e05300;
+      --accent-red: #d32f2f;
+      --text-main: #f5f5f7;
+      --text-muted: #a0a0ab;
+      --cream: #f4ebd9;
+      --border-color: #262630;
+      --font-heading: 'Bebas Neue', cursive, sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --transition-fast: 0.25s ease;
+      --transition-normal: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-image: radial-gradient(rgba(255, 94, 0, 0.03) 1px, transparent 0);
+      background-size: 24px 24px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      border: none;
+      outline: none;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .section-padding {
+      padding: 100px 0;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-main);
+      margin-bottom: 12px;
+      line-height: 1;
+    }
+
+    .section-subtitle {
+      color: var(--accent-orange);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 60px auto;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: var(--transition-normal);
+      text-transform: uppercase;
+      gap: 10px;
+    }
+
+    .btn-primary {
+      background: var(--accent-orange);
+      color: #fff;
+      box-shadow: 0 8px 25px rgba(255, 94, 0, 0.35);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-orange-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(255, 94, 0, 0.5);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--cream);
+      border: 2px solid var(--border-color);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent-orange);
+      color: var(--accent-orange);
+      transform: translateY(-3px);
+    }
+
+    /* Scroll Animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ==========================================
+       NAVBAR
+       ========================================== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 24px 0;
+      transition: var(--transition-normal);
+    }
+
+    .navbar.scrolled {
+      background: rgba(10, 10, 12, 0.92);
+      backdrop-filter: blur(12px);
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      letter-spacing: 2px;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo span {
+      color: var(--accent-orange);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      transition: var(--transition-fast);
+      position: relative;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--accent-orange);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-orange);
+      transition: var(--transition-fast);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 6px;
+      z-index: 1001;
+    }
+
+    .hamburger span {
+      width: 28px;
+      height: 3px;
+      background: var(--text-main);
+      border-radius: 2px;
+      transition: var(--transition-fast);
+    }
+
+    /* Hamburger Animation */
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(9px) rotate(45deg);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-9px) rotate(-45deg);
+    }
+
+    /* Mobile Nav Overlay */
+    @media (max-width: 992px) {
+      .hamburger {
+        display: flex;
+      }
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 380px;
+        height: 100vh;
+        background: var(--bg-card);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 28px;
+        transition: var(--transition-normal);
+        border-left: 1px solid var(--border-color);
+        box-shadow: -10px 0 30px rgba(0,0,0,0.8);
+      }
+      .nav-links.active {
+        right: 0;
+      }
+      .nav-cta {
+        display: none;
+      }
+    }
+
+    /* ==========================================
+       HERO SECTION
+       ========================================== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding-top: 120px;
+      padding-bottom: 60px;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-content h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(3.5rem, 7vw, 6rem);
+      line-height: 0.95;
+      letter-spacing: 2px;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+    }
+
+    .hero-content h1 span {
+      color: var(--accent-orange);
+      display: block;
+    }
+
+    .hero-content p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+      max-width: 500px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero-image-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-img {
+      width: 100%;
+      max-width: 520px;
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(255, 94, 0, 0.2);
+      transform: rotate(-2deg);
+      transition: var(--transition-normal);
+    }
+
+    .hero-img:hover {
+      transform: rotate(0deg) scale(1.02);
+    }
+
+    .hero-badge {
+      position: absolute;
+      bottom: -20px;
+      left: 10px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 16px 24px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-badge-icon {
+      font-size: 1.8rem;
+    }
+
+    .hero-badge-text h4 {
+      font-weight: 700;
+      color: var(--cream);
+      font-size: 0.95rem;
+    }
+
+    .hero-badge-text p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .scroll-mouse {
+      width: 24px;
+      height: 38px;
+      border: 2px solid var(--border-color);
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      padding-top: 6px;
+    }
+
+    .scroll-wheel {
+      width: 4px;
+      height: 8px;
+      background: var(--accent-orange);
+      border-radius: 2px;
+      animation: scrollAnim 1.5s infinite;
+    }
+
+    @keyframes scrollAnim {
+      0% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(12px); }
+    }
+
+    /* ==========================================
+       CATEGORIES & MENU FILTER
+       ========================================== */
+    .filter-bar {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .filter-btn {
+      padding: 10px 24px;
+      border-radius: 30px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--accent-orange);
+      color: #fff;
+      border-color: var(--accent-orange);
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 30px;
+    }
+
+    .burger-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: var(--transition-normal);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .burger-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(255, 94, 0, 0.4);
+      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .card-img-wrap {
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .card-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .burger-card:hover .card-img-wrap img {
+      transform: scale(1.08);
+    }
+
+    .card-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .card-title {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .card-desc {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    .card-btn {
+      width: 100%;
+      padding: 12px;
+      background: rgba(255, 94, 0, 0.1);
+      color: var(--accent-orange);
+      border: 1px solid rgba(255, 94, 0, 0.2);
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition-fast);
+      text-align: center;
+    }
+
+    .burger-card:hover .card-btn {
+      background: var(--accent-orange);
+      color: #fff;
+    }
+
+    /* ==========================================
+       BUILDER SECTION
+       ========================================== */
+    .builder-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 28px;
+      padding: 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .builder-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .builder-step h4 {
+      font-size: 1rem;
+      color: var(--cream);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .builder-options {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .builder-opt {
+      padding: 8px 18px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .builder-opt.active, .builder-opt:hover {
+      border-color: var(--accent-orange);
+      background: rgba(255, 94, 0, 0.15);
+      color: var(--text-main);
+    }
+
+    .builder-preview {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 380px;
+    }
+
+    .preview-img {
+      width: 260px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      transition: var(--transition-normal);
+    }
+
+    .selected-summary {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .chip {
+      background: var(--accent-orange);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+
+    /* ==========================================
+       BURGER EXPERIENCE (FEATURES)
+       ========================================== */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 32px 24px;
+      position: relative;
+      transition: var(--transition-normal);
+    }
+
+    .feature-card:hover {
+      border-color: var(--accent-orange);
+      transform: translateY(-5px);
+    }
+
+    .feature-num {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      color: rgba(255, 94, 0, 0.2);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .feature-title {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+      color: var(--cream);
+    }
+
+    .feature-desc {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* ==========================================
+       BURGER ANATOMY
+       ========================================== */
+    .anatomy-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 28px;
+      padding: 40px;
+    }
+
+    .anatomy-img-container {
+      position: relative;
+      text-align: center;
+    }
+
+    .anatomy-img {
+      width: 100%;
+      max-width: 420px;
+      border-radius: 20px;
+      margin: 0 auto;
+    }
+
+    .anatomy-layers-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .anatomy-layer-item {
+      padding: 16px 20px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .anatomy-layer-item:hover, .anatomy-layer-item.active {
+      background: rgba(255, 94, 0, 0.1);
+      border-color: var(--accent-orange);
+    }
+
+    .anatomy-layer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+      color: var(--cream);
+    }
+
+    .anatomy-layer-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+      display: none;
+    }
+
+    .anatomy-layer-item.active .anatomy-layer-desc {
+      display: block;
+    }
+
+    /* ==========================================
+       CRAVING SELECTOR
+       ========================================== */
+    .craving-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .craving-options {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .craving-card {
+      padding: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .craving-card:hover, .craving-card.active {
+      border-color: var(--accent-orange);
+      background: var(--bg-card-hover);
+    }
+
+    .craving-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+      color: var(--cream);
+      margin-bottom: 4px;
+    }
+
+    .craving-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .craving-display {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      height: 400px;
+    }
+
+    .craving-display img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition-normal);
+    }
+
+    /* ==========================================
+       GALLERY & LIGHTBOX
+       ========================================== */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery-item {
+      position: relative;
+      height: 260px;
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 1px solid var(--border-color);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.3s ease;
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    /* Lightbox Modal */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox-img {
+      max-width: 85%;
+      max-height: 80vh;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+      object-fit: contain;
+    }
+
+    .lightbox-btn {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid var(--border-color);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .lightbox-btn:hover {
+      background: var(--accent-orange);
+      border-color: var(--accent-orange);
+    }
+
+    .lightbox-close { top: 30px; right: 30px; }
+    .lightbox-prev { left: 30px; }
+    .lightbox-next { right: 30px; }
+
+    /* ==========================================
+       CINEMATIC BURGER MOMENT
+       ========================================== */
+    .cinematic {
+      position: relative;
+      padding: 140px 0;
+      background: linear-gradient(rgba(10, 10, 12, 0.85), rgba(10, 10, 12, 0.85)),
+                  url('https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1600&q=80') center/cover fixed;
+      text-align: center;
+      border-y: 1px solid var(--border-color);
+    }
+
+    .cinematic h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(3rem, 6vw, 5rem);
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    .cinematic p {
+      max-width: 600px;
+      margin: 0 auto 36px auto;
+      color: var(--cream);
+      font-size: 1.15rem;
+    }
+
+    /* ==========================================
+       FAQ ACCORDION
+       ========================================== */
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: var(--transition-fast);
+    }
+
+    .faq-item:hover {
+      border-color: rgba(255, 94, 0, 0.3);
+    }
+
+    .faq-question {
+      padding: 20px 24px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--cream);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-toggle {
+      font-size: 1.4rem;
+      color: var(--accent-orange);
+      transition: transform 0.3s ease;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
+      padding: 0 24px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 300px;
+      padding-bottom: 20px;
+      transition: max-height 0.3s ease-in-out;
+    }
+
+    .faq-item.active .faq-toggle {
+      transform: rotate(45deg);
+    }
+
+    /* ==========================================
+       CONTACT SECTION & FORM
+       ========================================== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 40px;
+    }
+
+    .contact-info {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .contact-card {
+      margin-bottom: 24px;
+    }
+
+    .contact-card h4 {
+      color: var(--accent-orange);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 6px;
+    }
+
+    .contact-card p, .contact-card a {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--cream);
+    }
+
+    .contact-card a:hover {
+      color: var(--accent-orange);
+    }
+
+    .contact-form {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      padding: 40px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 14px 18px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      color: var(--text-main);
+      font-size: 0.95rem;
+      transition: var(--transition-fast);
+    }
+
+    .form-control:focus {
+      border-color: var(--accent-orange);
+      background: rgba(255, 94, 0, 0.05);
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-alert {
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+      display: none;
+    }
+
+    .form-alert.success {
+      background: rgba(46, 125, 50, 0.2);
+      border: 1px solid #2e7d32;
+      color: #81c784;
+      display: block;
+    }
+
+    .form-alert.error {
+      background: rgba(211, 47, 47, 0.2);
+      border: 1px solid #d32f2f;
+      color: #ef5350;
+      display: block;
+    }
+
+    /* ==========================================
+       FOOTER
+       ========================================== */
+    .footer {
+      background: #050507;
+      border-top: 1px solid var(--border-color);
+      padding-top: 80px;
+      padding-bottom: 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    .footer-brand p {
+      color: var(--text-muted);
+      margin-top: 12px;
+      max-width: 300px;
+    }
+
+    .footer-col h4 {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      letter-spacing: 1px;
+      color: var(--cream);
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      transition: var(--transition-fast);
+    }
+
+    .footer-links a:hover {
+      color: var(--accent-orange);
+    }
+
+    .footer-cta-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .footer-cta-box h5 {
+      color: var(--cream);
+      font-size: 1rem;
+      margin-bottom: 12px;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border-color);
+      padding-top: 24px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* Back To Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 48px;
+      height: 48px;
+      background: var(--accent-orange);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition-normal);
+      z-index: 999;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      background: var(--accent-orange-hover);
+      transform: translateY(-4px);
+    }
+
+    /* ==========================================
+       RESPONSIVE BREAKPOINTS
+       ========================================== */
+    @media (max-width: 1200px) {
+      .footer-grid { grid-template-columns: 1fr 1fr 1fr 1fr; }
+    }
+
+    @media (max-width: 992px) {
+      .hero-grid { grid-template-columns: 1fr; text-align: center; }
+      .hero-content p { margin: 0 auto 36px auto; }
+      .hero-actions { justify-content: center; }
+      .builder-container { grid-template-columns: 1fr; }
+      .anatomy-wrapper { grid-template-columns: 1fr; }
+      .craving-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 678px) {
+      .section-padding { padding: 60px 0; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; width: 100%; }
+      .hero-actions .btn { width: 100%; }
+      .builder-container, .anatomy-wrapper, .contact-info, .contact-form { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="#home" class="logo">BURGER <span>HUB</span></a>
+      
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#builder">Burger Builder</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <a href="https://wa.me/923193284825" target="_blank" class="btn btn-primary nav-cta">Order / Contact</a>
+
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div class="hero-content reveal">
+        <span class="section-subtitle">Karachi's Pure Burger Destination</span>
+        <h1>Big Burgers.<br><span>Bold Cravings.</span></h1>
+        <p>Discover a burger-focused experience built around bold flavors, juicy layers and seriously satisfying bites.</p>
+        <div class="hero-actions">
+          <a href="#menu" class="btn btn-primary">Explore Burgers</a>
+          <a href="https://wa.me/923193284825" target="_blank" class="btn btn-secondary">WhatsApp Us</a>
+        </div>
+      </div>
+      <div class="hero-image-wrapper reveal">
+        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=80" alt="Delicious Juicy Beef Burger" class="hero-img" />
+        <div class="hero-badge">
+          <span class="hero-badge-icon">🍔</span>
+          <div class="hero-badge-text">
+            <h4>100% Burger Focused</h4>
+            <p>Pure Passion in Every Bite</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-mouse">
+        <div class="scroll-wheel"></div>
+      </div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- BURGER MENU SECTION -->
+  <section class="section-padding" id="menu">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-subtitle">Crafted For Burger Lovers</span>
+        <h2 class="section-title">THE BURGER MENU</h2>
+        <p style="color: var(--text-muted);">Explore our signature burger concepts, prepared with attention to every layer.</p>
+      </div>
+
+      <!-- Burger Categories Filter -->
+      <div class="filter-bar reveal">
+        <button class="filter-btn active" data-filter="all">All Burgers</button>
+        <button class="filter-btn" data-filter="beef">Beef</button>
+        <button class="filter-btn" data-filter="chicken">Chicken</button>
+        <button class="filter-btn" data-filter="cheesy">Cheesy</button>
+        <button class="filter-btn" data-filter="spicy">Spicy</button>
+      </div>
+
+      <div class="menu-grid" id="menuGrid">
+        <!-- Card 1 -->
+        <div class="burger-card reveal" data-category="beef">
+          <div class="card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=600&q=80" alt="Classic Beef Burger" />
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Classic Beef Burger</h3>
+            <p class="card-desc">Juicy beef patty topped with fresh lettuce, ripe tomatoes, pickles, and signature hub sauce.</p>
+            <button class="card-btn">View Burger</button>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="burger-card reveal" data-category="beef cheesy">
+          <div class="card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=600&q=80" alt="Double Beef Burger" />
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Double Beef Burger</h3>
+            <p class="card-desc">Double layered beef patties stacked with melted cheddar cheese, caramelized onions, and house glaze.</p>
+            <button class="card-btn">View Burger</button>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="burger-card reveal" data-category="chicken">
+          <div class="card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?auto=format&fit=crop&w=600&q=80" alt="Crispy Chicken Burger" />
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Crispy Chicken Burger</h3>
+            <p class="card-desc">Golden fried crispy chicken fillet coated in savory seasoning with crisp slaw and mayo.</p>
+            <button class="card-btn">View Burger</button>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="burger-card reveal" data-category="chicken spicy">
+          <div class="card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?auto=format&fit=crop&w=600&q=80" alt="Spicy Chicken Burger" />
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Spicy Chicken Burger</h3>
+            <p class="card-desc">Fiery marinated chicken breast served with spicy mayo, jalapeños, and fresh lettuce.</p>
+            <button class="card-btn">View Burger</button>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="burger-card reveal" data-category="cheesy beef">
+          <div class="card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?auto=format&fit=crop&w=600&q=80" alt="Cheese Burger" />
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Cheese Burger</h3>
+            <p class="card-desc">A melt-in-your-mouth classic packed with rich melted cheese slice and savory beef patty.</p>
+            <button class="card-btn">View Burger</button>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="burger-card reveal" data-category="beef">
+          <div class="card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1553979459-d2229ba7433b?auto=format&fit=crop&w=600&q=80" alt="Smoky BBQ Burger" />
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Smoky BBQ Burger</h3>
+            <p class="card-desc">Flame-grilled beef infused with rich smoky barbecue sauce, crispy onion rings, and cheese.</p>
+            <button class="card-btn">View Burger</button>
+          </div>
+        </div>
+
+    
+
+    
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE BURGER BUILDER -->
+  <section class="section-padding" id="builder" style="background: rgba(255, 255, 255, 0.01);">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-subtitle">Customization Studio</span>
+        <h2 class="section-title">BUILD YOUR BURGER</h2>
+        <p style="color: var(--text-muted);">Select your preferred ingredients to customize your ideal burger stack.</p>
+      </div>
+
+      <div class="builder-container reveal">
+        <div class="builder-controls">
+          <!-- Step 1 -->
+          <div class="builder-step">
+            <h4>Step 1 — Choose Your Base</h4>
+            <div class="builder-options" data-step="base">
+              <button class="builder-opt active" data-val="Beef">Beef</button>
+              <button class="builder-opt" data-val="Chicken">Chicken</button>
+              <button class="builder-opt" data-val="Crispy Chicken">Crispy Chicken</button>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="builder-step">
+            <h4>Step 2 — Choose Your Cheese</h4>
+            <div class="builder-options" data-step="cheese">
+              <button class="builder-opt active" data-val="Classic Cheese">Classic Cheese</button>
+              <button class="builder-opt" data-val="Cheddar">Cheddar</button>
+              <button class="builder-opt" data-val="No Cheese">No Cheese</button>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="builder-step">
+            <h4>Step 3 — Choose Your Style</h4>
+            <div class="builder-options" data-step="style">
+              <button class="builder-opt active" data-val="Classic">Classic</button>
+              <button class="builder-opt" data-val="Spicy">Spicy</button>
+              <button class="builder-opt" data-val="Smoky">Smoky</button>
+              <button class="builder-opt" data-val="Loaded">Loaded</button>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="builder-step">
+            <h4>Step 4 — Choose Your Extras</h4>
+            <div class="builder-options" data-step="extras">
+              <button class="builder-opt active" data-val="Jalapeños">Jalapeños</button>
+              <button class="builder-opt" data-val="Onions">Onions</button>
+              <button class="builder-opt" data-val="Pickles">Pickles</button>
+              <button class="builder-opt" data-val="Extra Cheese">Extra Cheese</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="builder-preview">
+          <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80" alt="Custom Burger Preview" class="preview-img" id="builderImg" />
+          <h3 style="font-family: var(--font-heading); font-size: 2rem; color: var(--cream);" id="builderTitle">Custom Burger Stack</h3>
+          <div class="selected-summary" id="builderSummary">
+            <span class="chip">Beef</span>
+            <span class="chip">Classic Cheese</span>
+            <span class="chip">Classic</span>
+            <span class="chip">Jalapeños</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BURGER EXPERIENCE / FEATURES -->
+  <section class="section-padding" id="experience">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-subtitle">Crafting Quality</span>
+        <h2 class="section-title">WHAT MAKES A BURGER HIT DIFFERENT?</h2>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card reveal">
+          <div class="feature-num">01</div>
+          <h3 class="feature-title">THE BUN</h3>
+          <p class="feature-desc">Soft, fresh and made to complement every bite without overpowering the stack.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-num">02</div>
+          <h3 class="feature-title">THE PATTY</h3>
+          <p class="feature-desc">The heart of every great burger, seared to preserve rich flavor and texture.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-num">03</div>
+          <h3 class="feature-title">THE CHEESE</h3>
+          <p class="feature-desc">A rich layer that melts seamlessly over the patty and brings everything together.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-num">04</div>
+          <h3 class="feature-title">THE SAUCE</h3>
+          <p class="feature-desc">The finishing touch that adds character and elevates each unique burger creation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BURGER ANATOMY SECTION -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-subtitle">Layer Breakdown</span>
+        <h2 class="section-title">EVERY LAYER MATTERS</h2>
+      </div>
+
+      <div class="anatomy-wrapper reveal">
+        <div class="anatomy-img-container">
+          <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=600&q=80" alt="Burger Layers Anatomy" class="anatomy-img" id="anatomyImg" />
+        </div>
+        <div class="anatomy-layers-list">
+          <div class="anatomy-layer-item active" data-layer="top-bun">
+            <div class="anatomy-layer-header">
+              <span>01. Top Bun</span>
+              <span>+</span>
+            </div>
+            <div class="anatomy-layer-desc">Toasted to golden perfection for ideal texture and stability.</div>
+          </div>
+          <div class="anatomy-layer-item" data-layer="sauce">
+            <div class="anatomy-layer-header">
+              <span>02. House Sauce</span>
+              <span>+</span>
+            </div>
+            <div class="anatomy-layer-desc">Signature sauce crafted to balance savory and tangy notes.</div>
+          </div>
+          <div class="anatomy-layer-item" data-layer="fresh">
+            <div class="anatomy-layer-header">
+              <span>03. Fresh Layers</span>
+              <span>+</span>
+            </div>
+            <div class="anatomy-layer-desc">Crisp lettuce, ripe tomatoes, and tangy pickles.</div>
+          </div>
+          <div class="anatomy-layer-item" data-layer="cheese">
+            <div class="anatomy-layer-header">
+              <span>04. Melted Cheese</span>
+              <span>+</span>
+            </div>
+            <div class="anatomy-layer-desc">Warm, rich cheese melted directly onto the hot patty.</div>
+          </div>
+          <div class="anatomy-layer-item" data-layer="patty">
+            <div class="anatomy-layer-header">
+              <span>05. Seared Patty</span>
+              <span>+</span>
+            </div>
+            <div class="anatomy-layer-desc">Premium meat patty seasoned and cooked to juicy perfection.</div>
+          </div>
+          <div class="anatomy-layer-item" data-layer="bottom-bun">
+            <div class="anatomy-layer-header">
+              <span>06. Bottom Bun</span>
+              <span>+</span>
+            </div>
+            <div class="anatomy-layer-desc">Sturdy base engineered to hold all juices and flavors.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CRAVING SELECTOR -->
+  <section class="section-padding" style="background: rgba(255, 94, 0, 0.02);">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-subtitle">Mood Matcher</span>
+        <h2 class="section-title">WHAT ARE YOU CRAVING?</h2>
+      </div>
+
+      <div class="craving-grid reveal">
+        <div class="craving-options">
+          <div class="craving-card active" data-img="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80" data-title="CLASSIC" data-desc="Simple, traditional, and deeply satisfying pure beef flavor.">
+            <h3>CLASSIC</h3>
+            <p>Simple and satisfying.</p>
+          </div>
+          <div class="craving-card" data-img="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?auto=format&fit=crop&w=800&q=80" data-title="CHEESY" data-desc="Melted layers of cheese designed for true cheese enthusiasts.">
+            <h3>CHEESY</h3>
+            <p>For serious cheese lovers.</p>
+          </div>
+          <div class="craving-card" data-img="https://images.unsplash.com/photo-1606755962773-d324e0a13086?auto=format&fit=crop&w=800&q=80" data-title="SPICY" data-desc="Infused with jalapeños and bold chili drizzle for an energetic kick.">
+            <h3>SPICY</h3>
+            <p>For a little extra kick.</p>
+          </div>
+          <div class="craving-card" data-img="https://images.unsplash.com/photo-1583794138657-b0162590fa14?auto=format&fit=crop&w=800&q=80" data-title="LOADED" data-desc="Double patties and double layers packed for maximum burger energy.">
+            <h3>LOADED</h3>
+            <p>For maximum burger energy.</p>
+          </div>
+        </div>
+
+        <div class="craving-display">
+          <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80" alt="Featured Craving Burger" id="cravingImg" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BURGER GALLERY -->
+  <section class="section-padding" id="gallery">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-subtitle">Visual Cravings</span>
+        <h2 class="section-title">BURGER CRAVINGS</h2>
+      </div>
+
+      <div class="filter-bar reveal">
+        <button class="filter-btn active" data-gfilter="all">All</button>
+        <button class="filter-btn" data-gfilter="beef">Beef</button>
+        <button class="filter-btn" data-gfilter="chicken">Chicken</button>
+        <button class="filter-btn" data-gfilter="cheese">Cheese</button>
+        <button class="filter-btn" data-gfilter="spicy">Spicy</button>
+      </div>
+
+      <div class="gallery-grid" id="galleryGrid">
+        <div class="gallery-item reveal" data-gcat="beef">
+          <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80" alt="Beef Burger Close-up" />
+          <div class="gallery-overlay">VIEW BURGER</div>
+        </div>
+        <div class="gallery-item reveal" data-gcat="cheese">
+          <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=600&q=80" alt="Cheeseburger Melt" />
+          <div class="gallery-overlay">VIEW BURGER</div>
+        </div>
+        <div class="gallery-item reveal" data-gcat="chicken">
+          <img src="https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?auto=format&fit=crop&w=600&q=80" alt="Crispy Chicken Stack" />
+          <div class="gallery-overlay">VIEW BURGER</div>
+        </div>
+        <div class="gallery-item reveal" data-gcat="spicy">
+          <img src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?auto=format&fit=crop&w=600&q=80" alt="Spicy Chicken Burger" />
+          <div class="gallery-overlay">VIEW BURGER</div>
+        </div>
+        <div class="gallery-item reveal" data-gcat="beef cheese">
+          <img src="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?auto=format&fit=crop&w=600&q=80" alt="Double Cheeseburger" />
+          <div class="gallery-overlay">VIEW BURGER</div>
+        </div>
+        <div class="gallery-item reveal" data-gcat="beef">
+          <img src="https://images.unsplash.com/photo-1553979459-d2229ba7433b?auto=format&fit=crop&w=600&q=80" alt="Smoky Grilled Burger" />
+          <div class="gallery-overlay">VIEW BURGER</div>
+        </div>
+    
+        <div class="gallery-item reveal" data-gcat="beef">
+          <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=600&q=80" alt="Gourmet Beef Burger" />
+          <div class="gallery-overlay">VIEW BURGER</div>
+        </div>
+        <div class="gallery-item reveal" data-gcat="chicken">
+          <img src="https://images.unsplash.com/photo-1610440042657-612c34d95e9f?auto=format&fit=crop&w=600&q=80" alt="Fried Chicken Burger" />
+          <div class="gallery-overlay">VIEW BURGER</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX MODAL -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-btn lightbox-close" id="lbClose">&times;</button>
+    <button class="lightbox-btn lightbox-prev" id="lbPrev">&#10094;</button>
+    <img src="" alt="Enlarged Burger View" class="lightbox-img" id="lbImg" />
+    <button class="lightbox-btn lightbox-next" id="lbNext">&#10095;</button>
+  </div>
+
+  <!-- ABOUT SECTION -->
+  <section class="section-padding" id="about">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-subtitle">Our Passion</span>
+        <h2 class="section-title">WELCOME TO BURGER HUB</h2>
+      </div>
+
+      <div style="max-width: 800px; margin: 0 auto; text-align: center;" class="reveal">
+        <p style="font-size: 1.15rem; color: var(--text-muted); margin-bottom: 24px; line-height: 1.8;">
+          Burger Hub is a dedicated burger destination in Karachi, Pakistan, built around the art of creating bold, satisfying burgers. We believe in high-contrast flavors, crisp toppings, melted cheeses, and juicy patties stacked between soft toasted buns.
+        </p>
+        <p style="font-size: 1.05rem; color: var(--text-muted); line-height: 1.8;">
+          Every item on our menu is crafted exclusively for burger enthusiasts who appreciate straightforward quality, layered textures, and impactful taste.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CINEMATIC MOMENT -->
+  <section class="cinematic">
+    <div class="container reveal">
+      <h2>ONE BITE.<br>BIG IMPACT.</h2>
+      <p>A great burger is all about the balance of flavor, texture and that satisfying first bite.</p>
+      <a href="#menu" class="btn btn-primary">Explore The Menu</a>
+    </div>
+  </section>
+
+  <!-- FAQ ACCORDION -->
+  <section class="section-padding" id="faq">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-subtitle">Questions & Answers</span>
+        <h2 class="section-title">FREQUENTLY ASKED QUESTIONS</h2>
+      </div>
+
+      <div class="faq-container reveal">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>What type of burgers does Burger Hub offer?</span>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            Burger Hub offers a focused variety of beef and chicken burgers ranging from classic cheeseburgers to spicy jalapeño and double-stacked options.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Do you have beef burgers?</span>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            Yes, we feature multiple beef burger concepts including our Classic Beef, Double Beef, BBQ, and Loaded options.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Do you offer chicken burgers?</span>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            Yes, we offer both Crispy Chicken and Spicy Chicken burger creations.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Can I customize my burger?</span>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            Yes, you can choose your favorite base, cheese, style, and extra toppings to suit your preference.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How can I contact Burger Hub?</span>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            You can reach us directly via phone or WhatsApp at +923193284825 or through the contact form on this website.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Where is Burger Hub located?</span>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            Burger Hub is located in Karachi, Pakistan.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT CTA -->
+  <section class="section-padding" style="background: rgba(255, 94, 0, 0.03); border-y: 1px solid var(--border-color);">
+    <div class="container text-center reveal" style="text-align: center;">
+      <span class="section-subtitle">Get In Touch</span>
+      <h2 class="section-title">READY FOR A BURGER?</h2>
+      <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto 30px auto;">Got a burger craving? Get in touch with Burger Hub.</p>
+      
+      <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+        <a href="tel:+923193284825" class="btn btn-primary">Call Now</a>
+        <a href="https://wa.me/923193284825" target="_blank" class="btn btn-secondary">WhatsApp Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION & FORM -->
+  <section class="section-padding" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <div>
+            <span class="section-subtitle">Burger Hub Contact</span>
+            <h2 class="section-title" style="font-size: 2.5rem; margin-bottom: 30px;">GET IN TOUCH</h2>
+
+            <div class="contact-card">
+              <h4>LOCATION</h4>
+              <p>Karachi, Pakistan</p>
+            </div>
+
+            <div class="contact-card">
+              <h4>PHONE</h4>
+              <p><a href="tel:+923193284825">03193284825</a></p>
+            </div>
+
+            <div class="contact-card">
+              <h4>WHATSAPP</h4>
+              <p><a href="https://wa.me/923193284825" target="_blank">+923193284825</a></p>
+            </div>
+          </div>
+
+          <div style="padding-top: 20px; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.85rem;">
+            100% Burger Focused Destination in Karachi.
+          </div>
+        </div>
+
+        <div class="contact-form reveal">
+          <h3 style="font-family: var(--font-heading); font-size: 2rem; margin-bottom: 20px; color: var(--cream);">SEND AN INQUIRY</h3>
+          
+          <div class="form-alert" id="formAlert"></div>
+
+          <form id="inquiryForm">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" class="form-control" placeholder="Enter your full name" required />
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" class="form-control" placeholder="03XXXXXXXXX" required />
+            </div>
+
+            <div class="form-group">
+              <label for="interest">Burger Interest</label>
+              <select id="interest" class="form-control">
+                <option value="Beef Burger">Beef Burger</option>
+                <option value="Chicken Burger">Chicken Burger</option>
+                <option value="Cheese Burger">Cheese Burger</option>
+                <option value="Spicy Burger">Spicy Burger</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" class="form-control" placeholder="How can we help you?" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Send Inquiry</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#home" class="logo">BURGER <span>HUB</span></a>
+          <p>Big Burgers. Bold Cravings.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>QUICK LINKS</h4>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>BURGER MENU</h4>
+          <ul class="footer-links">
+            <li><a href="#menu">Beef Burgers</a></li>
+            <li><a href="#menu">Chicken Burgers</a></li>
+            <li><a href="#menu">Cheese Burgers</a></li>
+            <li><a href="#menu">Spicy Burgers</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>CONTACT</h4>
+          <ul class="footer-links">
+            <li>Karachi, Pakistan</li>
+            <li>Phone: <a href="tel:+923193284825" style="color: var(--cream);">03193284825</a></li>
+            <li>WhatsApp: <a href="https://wa.me/923193284825" target="_blank" style="color: var(--cream);">+923193284825</a></li>
+          </ul>
+          
+          <div class="footer-cta-box" style="margin-top: 20px;">
+            <h5>Craving a burger?</h5>
+            <a href="https://wa.me/923193284825" target="_blank" class="btn btn-primary" style="padding: 8px 16px; font-size: 0.8rem; width: 100%;">WhatsApp Burger Hub</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        &copy; <span id="currentYear"></span> Burger Hub. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- BACK TO TOP BUTTON -->
+  <div class="back-to-top" id="backToTop">&#8593;</div>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      
+      // Dynamic Footer Year
+      document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+      // Navbar Sticky & Scroll Background
+      const navbar = document.getElementById('navbar');
+      const backToTop = document.getElementById('backToTop');
+      const navLinks = document.querySelectorAll('.nav-links a');
+      const sections = document.querySelectorAll('section');
+
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+          backToTop.classList.add('show');
+        } else {
+          navbar.classList.remove('scrolled');
+          backToTop.classList.remove('show');
+        }
+
+        // Active Navigation Highlight on Scroll
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 120;
+          if (pageYOffset >= sectionTop) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+          }
+        });
+      });
+
+      // Mobile Navigation Hamburger Toggle
+      const hamburger = document.getElementById('hamburger');
+      const navLinksMenu = document.getElementById('navLinks');
+
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinksMenu.classList.toggle('active');
+      });
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          hamburger.classList.remove('active');
+          navLinksMenu.classList.remove('active');
+        });
+      });
+
+      // Scroll Reveal Animations
+      const reveals = document.querySelectorAll('.reveal');
+      const revealOnScroll = () => {
+        const windowHeight = window.innerHeight;
+        reveals.forEach(el => {
+          const elementTop = el.getBoundingClientRect().top;
+          const elementVisible = 100;
+          if (elementTop < windowHeight - elementVisible) {
+            el.classList.add('active');
+          }
+        });
+      };
+      window.addEventListener('scroll', revealOnScroll);
+      revealOnScroll();
+
+      // Burger Menu Category Filter
+      const filterBtns = document.querySelectorAll('.filter-btn[data-filter]');
+      const burgerCards = document.querySelectorAll('.burger-card');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const filter = btn.getAttribute('data-filter');
+
+          burgerCards.forEach(card => {
+            const categories = card.getAttribute('data-category');
+            if (filter === 'all' || categories.includes(filter)) {
+              card.style.display = 'flex';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // Interactive Burger Builder
+      const builderOpts = document.querySelectorAll('.builder-opt');
+      const builderImg = document.getElementById('builderImg');
+      const builderTitle = document.getElementById('builderTitle');
+      const builderSummary = document.getElementById('builderSummary');
+
+      const builderImages = {
+        'Beef': 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80',
+        'Chicken': 'https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?auto=format&fit=crop&w=600&q=80',
+        'Crispy Chicken': 'https://images.unsplash.com/photo-1606755962773-d324e0a13086?auto=format&fit=crop&w=600&q=80'
+      };
+
+      const selections = {
+        base: 'Beef',
+        cheese: 'Classic Cheese',
+        style: 'Classic',
+        extras: 'Jalapeños'
+      };
+
+      builderOpts.forEach(opt => {
+        opt.addEventListener('click', (e) => {
+          const step = e.target.parentElement.getAttribute('data-step');
+          const val = e.target.getAttribute('data-val');
+          
+          // Toggle active within step
+          e.target.parentElement.querySelectorAll('.builder-opt').forEach(b => b.classList.remove('active'));
+          e.target.classList.add('active');
+
+          selections[step] = val;
+
+          // Update image if base changes
+          if (step === 'base' && builderImages[val]) {
+            builderImg.src = builderImages[val];
+          }
+
+          // Update Summary Chips
+          builderSummary.innerHTML = `
+            <span class="chip">${selections.base}</span>
+            <span class="chip">${selections.cheese}</span>
+            <span class="chip">${selections.style}</span>
+            <span class="chip">${selections.extras}</span>
+          `;
+          builderTitle.textContent = `${selections.style} ${selections.base} Stack`;
+        });
+      });
+
+      // Burger Anatomy Interactive Section
+      const anatomyItems = document.querySelectorAll('.anatomy-layer-item');
+      const anatomyImg = document.getElementById('anatomyImg');
+      
+      const anatomyImages = {
+        'top-bun': 'https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=600&q=80',
+        'sauce': 'https://images.unsplash.com/photo-1583794138657-b0162590fa14?auto=format&fit=crop&w=600&q=80',
+        'fresh': 'https://images.unsplash.com/photo-1594212699903-ec8a3eca50f6?auto=format&fit=crop&w=600&q=80',
+        'cheese': 'https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?auto=format&fit=crop&w=600&q=80',
+        'patty': 'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=600&q=80',
+        'bottom-bun': 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80'
+      };
+
+      anatomyItems.forEach(item => {
+        item.addEventListener('click', () => {
+          anatomyItems.forEach(i => i.classList.remove('active'));
+          item.classList.add('active');
+          const layer = item.getAttribute('data-layer');
+          if (anatomyImages[layer]) {
+            anatomyImg.src = anatomyImages[layer];
+          }
+        });
+      });
+
+      // Craving Selector
+      const cravingCards = document.querySelectorAll('.craving-card');
+      const cravingImg = document.getElementById('cravingImg');
+
+      cravingCards.forEach(card => {
+        card.addEventListener('click', () => {
+          cravingCards.forEach(c => c.classList.remove('active'));
+          card.classList.add('active');
+          const newSrc = card.getAttribute('data-img');
+          cravingImg.src = newSrc;
+        });
+      });
+
+      // Gallery Filter & Fullscreen Lightbox
+      const gFilterBtns = document.querySelectorAll('.filter-btn[data-gfilter]');
+      const galleryItems = document.querySelectorAll('.gallery-item');
+      const lightbox = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lbImg');
+      const lbClose = document.getElementById('lbClose');
+      const lbPrev = document.getElementById('lbPrev');
+      const lbNext = document.getElementById('lbNext');
+
+      let currentGalleryIndex = 0;
+      let visibleGalleryItems = Array.from(galleryItems);
+
+      gFilterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          gFilterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const filter = btn.getAttribute('data-gfilter');
+
+          visibleGalleryItems = [];
+          galleryItems.forEach(item => {
+            const cat = item.getAttribute('data-gcat');
+            if (filter === 'all' || cat.includes(filter)) {
+              item.style.display = 'block';
+              visibleGalleryItems.push(item);
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // Lightbox Controls
+      const openLightbox = (index) => {
+        currentGalleryIndex = index;
+        const img = visibleGalleryItems[currentGalleryIndex].querySelector('img');
+        lbImg.src = img.src;
+        lightbox.classList.add('active');
+      };
+
+      galleryItems.forEach((item) => {
+        item.addEventListener('click', () => {
+          const index = visibleGalleryItems.indexOf(item);
+          if (index !== -1) {
+            openLightbox(index);
+          }
+        });
+      });
+
+      const closeLb = () => lightbox.classList.remove('active');
+      const prevLb = () => {
+        currentGalleryIndex = (currentGalleryIndex - 1 + visibleGalleryItems.length) % visibleGalleryItems.length;
+        openLightbox(currentGalleryIndex);
+      };
+      const nextLb = () => {
+        currentGalleryIndex = (currentGalleryIndex + 1) % visibleGalleryItems.length;
+        openLightbox(currentGalleryIndex);
+      };
+
+      lbClose.addEventListener('click', closeLb);
+      lbPrev.addEventListener('click', prevLb);
+      lbNext.addEventListener('click', nextLb);
+
+      // Keyboard Controls for Lightbox
+      document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape') closeLb();
+        if (e.key === 'ArrowLeft') prevLb();
+        if (e.key === 'ArrowRight') nextLb();
+      });
+
+      // FAQ Accordion
+      const faqItems = document.querySelectorAll('.faq-item');
+      faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', () => {
+          const isOpen = item.classList.contains('active');
+          faqItems.forEach(i => i.classList.remove('active'));
+          if (!isOpen) {
+            item.classList.add('active');
+          }
+        });
+      });
+
+      // Contact Form Validation (No Backend)
+      const form = document.getElementById('inquiryForm');
+      const formAlert = document.getElementById('formAlert');
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        if (name === '' || phone === '' || message === '') {
+          formAlert.className = 'form-alert error';
+          formAlert.textContent = 'Please fill out all required fields.';
+          return;
+        }
+
+        formAlert.className = 'form-alert success';
+        formAlert.textContent = 'Thank you for your inquiry! We have received your message.';
+        form.reset();
+      });
+
+      // Back to Top Button Smooth Scroll
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+    });
+  </script>
+</body>
+</html>
